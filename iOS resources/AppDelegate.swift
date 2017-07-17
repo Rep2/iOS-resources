@@ -1,9 +1,17 @@
-//
-//  AppDelegate.swift
-//  iOS resources
-//
-//  Created by Ivan Rep on 17/07/2017.
-//  Copyright © 2017 Ivan Rep. All rights reserved.
-//
+import UIKit
 
-import Foundation
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow? = UIWindow()
+
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        window?.rootViewController = UINavigationController()
+        window?.makeKeyAndVisible()
+
+        return true
+    }
+}

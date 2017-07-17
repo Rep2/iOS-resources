@@ -10,6 +10,8 @@
 		F6977BA61F1D67FD0076A3B6 /* iOS resources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6977B9C1F1D67FD0076A3B6 /* iOS resources.framework */; };
 		F6977BAB1F1D67FD0076A3B6 /* iOS_resourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6977BAA1F1D67FD0076A3B6 /* iOS_resourcesTests.swift */; };
 		F6977BAD1F1D67FD0076A3B6 /* iOS resources.h in Headers */ = {isa = PBXBuildFile; fileRef = F6977B9F1F1D67FD0076A3B6 /* iOS resources.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6977BB71F1D68090076A3B6 /* SafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6977BB61F1D68090076A3B6 /* SafeArray.swift */; };
+		F6977BB91F1D68150076A3B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6977BB81F1D68150076A3B6 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		F6977BA51F1D67FD0076A3B6 /* iOS resourcesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS resourcesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6977BAA1F1D67FD0076A3B6 /* iOS_resourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_resourcesTests.swift; sourceTree = "<group>"; };
 		F6977BAC1F1D67FD0076A3B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6977BB61F1D68090076A3B6 /* SafeArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeArray.swift; sourceTree = "<group>"; };
+		F6977BB81F1D68150076A3B6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			children = (
 				F6977B9F1F1D67FD0076A3B6 /* iOS resources.h */,
 				F6977BA01F1D67FD0076A3B6 /* Info.plist */,
+				F6977BB61F1D68090076A3B6 /* SafeArray.swift */,
+				F6977BB81F1D68150076A3B6 /* AppDelegate.swift */,
 			);
 			path = "iOS resources";
 			sourceTree = "<group>";
@@ -149,6 +155,7 @@
 					F6977B9B1F1D67FD0076A3B6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = MDX989Y6D8;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					F6977BA41F1D67FD0076A3B6 = {
@@ -198,6 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6977BB91F1D68150076A3B6 /* AppDelegate.swift in Sources */,
+				F6977BB71F1D68090076A3B6 /* SafeArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +333,7 @@
 		F6977BB11F1D67FD0076A3B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = MDX989Y6D8;
@@ -336,6 +346,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rep.iOS-resources";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -343,6 +354,7 @@
 		F6977BB21F1D67FD0076A3B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = MDX989Y6D8;
@@ -362,6 +374,7 @@
 		F6977BB41F1D67FD0076A3B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = MDX989Y6D8;
 				INFOPLIST_FILE = "iOS resourcesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -374,6 +387,7 @@
 		F6977BB51F1D67FD0076A3B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = MDX989Y6D8;
 				INFOPLIST_FILE = "iOS resourcesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
