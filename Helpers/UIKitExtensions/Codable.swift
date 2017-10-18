@@ -6,11 +6,11 @@ enum UserDefaultsError: Error {
 
 extension Decodable {
     static func fromUserDefaults() throws -> Self {
-        guard let data = UserDefaults.standard.object(forKey: String(describing: type(of: self))) as? Data else {
+        guard let decoded = UserDefaults.standard.object(forKey: String(describing: Self.self)) as? Data else {
             throw UserDefaultsError.dataNotFound
         }
 
-        return try PropertyListDecoder().decode(Self.self, from: data)
+        return try PropertyListDecoder().decode(Self.self, from: decoded)
     }
 }
 
