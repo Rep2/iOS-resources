@@ -1,18 +1,9 @@
 import CoreLocation
 import RxSwift
 
-enum LocationManagerError: Error, LocalizedError {
-    case locationServicesNotAuthorizedByUser
-    case locationServicesNotEnabled
-
-    var errorDescription: String? {
-        switch self {
-        case .locationServicesNotEnabled:
-            return "The location service is not enabled. Your device might not be able to collect location data."
-        case .locationServicesNotAuthorizedByUser:
-            return "The location service is not authorized. If you would like to use the app, enable the location service in the settings."
-        }
-    }
+enum LocationManagerError: Error {
+    case locationServiceNotEnabled
+    case notInitialized
 }
 
 class LocationManager: NSObject {
@@ -28,45 +19,43 @@ class LocationManager: NSObject {
         return locationManager
     }()
 
-    fileprivate lazy var authorizationStatusSubject = BehaviorSubject<CLAuthorizationStatus>(value: CLLocationManager.authorizationStatus())
-    fileprivate lazy var locationSubject = BehaviorSubject<CLLocation?>(value: nil)
+    fileprivate lazy var locationSubject = BehaviorSubject<Result<CLLocation>>(value: .error(LocationManagerError.notInitialized))
 
-    var authorizationStatusObservable: Observable<CLAuthorizationStatus> {
-        return authorizationStatusSubject.asObservable()
-    }
-
-    var locationObservable: Observable<CLLocation?> {
-        isLocationServiceEnabled() { isEnabled in
-            if isEnabled {
-                clLocationManager.startUpdatingLocation()
-            }
-        }
-
+    var locationObservable: Observable<Result<CLLocation>> {
         return locationSubject.asObservable()
     }
 
-    func isLocationServiceEnabled(callback: (Bool) -> Void) {
-        switch CLLocationManager.authorizationStatus() {
+    private override init() {
+        super.init()
+
+        authorizationStatusDidChange(CLLocationManager.authorizationStatus())
+    }
+
+    func startUpdatingLocation() {
+        clLocationManager.startUpdatingLocation()
+    }
+
+    func authorizationStatusDidChange(_ status: CLAuthorizationStatus) {
+        switch status {
         case .authorizedAlways, .authorizedWhenInUse:
-            callback(true)
+            clLocationManager.startUpdatingLocation()
         case .notDetermined:
             clLocationManager.requestAlwaysAuthorization()
         default:
-            callback(false)
+            locationSubject.onNext(.error(LocationManagerError.locationServiceNotEnabled))
         }
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
-            clLocationManager.startUpdatingLocation()
-        }
-
-        authorizationStatusSubject.onNext(status)
+        authorizationStatusDidChange(status)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationSubject.onNext(locations.last)
+        if let lastLocation = locations.last {
+            locationSubject.onNext(.value(lastLocation))
+        }
     }
 }
+
