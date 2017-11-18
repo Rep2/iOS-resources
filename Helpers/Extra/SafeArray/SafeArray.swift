@@ -8,7 +8,7 @@ extension Array {
      Removes element at index.
      Action that would cause an error are ignored.
      */
-    mutating func remove(safeAt index: Index) {
+    mutating func remove(safeAtIndex index: Index) {
         guard index >= 0 && index < count else {
             print("Index out of bounds while deleting item at index \(index) in \(self). This action is ignored.")
             return
@@ -21,7 +21,7 @@ extension Array {
      Inserts element at index.
      Action that would cause an error are ignored.
      */
-    mutating func insert(_ element: Element, safeAt index: Index) {
+    mutating func insert(_ element: Element, safeAtIndex index: Index) {
         guard index >= 0 && index <= count else {
             print("Index out of bounds while inserting item at index \(index) in \(self). This action is ignored")
             return
@@ -34,15 +34,15 @@ extension Array {
      Safe get set subscript.
      Action that would cause an error are ignored.
      */
-    subscript (safe index: Index) -> Element? {
+    subscript (safeIndex index: Index) -> Element? {
         get {
             return indices.contains(index) ? self[index] : nil
         }
         set {
-            remove(safeAt: index)
+            remove(safeAtIndex: index)
 
             if let element = newValue {
-                insert(element, safeAt: index)
+                insert(element, safeAtIndex: index)
             }
         }
     }
