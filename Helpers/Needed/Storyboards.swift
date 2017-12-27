@@ -10,11 +10,10 @@ enum Storyboards: String {
      */
     func viewController<T: UIViewController>() -> T {
         if let viewController = UIStoryboard(name: self.rawValue, bundle: nil)
-            .instantiateViewController(withIdentifier: String(describing: self)) as? T {
+            .instantiateViewController(withIdentifier: String(describing: T.self)) as? T {
             return viewController
         } else {
             fatalError("Failed to initialize view controller registerd in storyboard \(String(describing: self)) using identifier \(String(describing: T.self))")
         }
     }
 }
-
