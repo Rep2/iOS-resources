@@ -1,5 +1,7 @@
 import UIKit
 
+// Alerts
+
 extension UIViewController {
     func presentAlert(title: String, message: String? = nil, preferredStyle: UIAlertControllerStyle = .actionSheet, actions: [UIAlertAction]) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
@@ -13,19 +15,32 @@ extension UIViewController {
     }
 
     func presentAlert(error: Error) {
-        let description = (error as? LocalizedError).errorDescription ?? "Unexpected error occured"
+        let description = (error as? LocalizedError)?.errorDescription ?? "Unexpected error occured"
 
         presentAlert(title: description, actions: [UIAlertAction(title: "OK", style: .default, handler: nil)])
     }
 }
 
-// MARK VC presenting
+// Top most view controller
 
 extension UIViewController {
-    static func presentAsPopup(_ viewController: UIViewController, animated: Bool) {
-        viewController.modalPresentationStyle = .overFullScreen
-        viewController.modalTransitionStyle = .crossDissolve
+    var topMostViewController: UIViewController {
+        var viewController = self
 
-        present(viewController, animated: animated, completion: nil)
+        while let presentedViewController = viewController.presentedViewController {
+            viewController = presentedViewController
+        }
+
+        if let viewController = viewController as? UINavigationController,
+            let visibleViewController = viewController.visibleViewController {
+            return visibleViewController.topMostViewController
+        }
+
+        if let viewController = viewController as? UITabBarController,
+            let selectedViewController = viewController.selectedViewController {
+            return selectedViewController.topMostViewController
+        }
+
+        return viewController
     }
 }

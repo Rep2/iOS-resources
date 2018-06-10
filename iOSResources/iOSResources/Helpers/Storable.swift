@@ -1,12 +1,21 @@
 import Foundation
 
-protocol Storable: class {
-    static var identifier: String { get }
-    static var className: String { get }
+enum StorableError: Error, LocalizedError {
+    case dataNotFound
 
-    static func fetchFromUserDefaults() -> Self?
-    static func removeFromUserDefaults()
-    func saveInUserDefaults()
+    var errorDescription: String? {
+        switch self {
+        case .dataNotFound:
+            return "Data not found"
+        }
+    }
+}
+
+protocol Storable: Codable {
+    static var identifier: String { get }
+
+    static func fetchFromUserDefaults() throws -> Self
+    func saveInUserDefaults() throws
 }
 
 extension Storable {
@@ -14,29 +23,18 @@ extension Storable {
         return String(describing: Self.self)
     }
 
-    static var className: String {
-        return String(describing: Self.self)
-    }
-
-    static func fetchFromUserDefaults() -> Self? {
-        guard let data = UserDefaults.standard.object(forKey: identifier) as? Data else {
-            return nil
+    static func fetchFromUserDefaults() throws -> Self {
+        guard let decoded = UserDefaults.standard.object(forKey: identifier) as? Data else {
+            throw StorableError.dataNotFound
         }
 
-        NSKeyedUnarchiver.setClass(Self.self, forClassName: className)
-
-        return NSKeyedUnarchiver.unarchiveObject(with: data) as? Self
+        return try Self.decode(data: decoded)
     }
 
-    static func removeFromUserDefaults() {
-        UserDefaults.standard.removeObject(forKey: identifier)
-    }
+    func saveInUserDefaults() throws {
+        let data = try Self.encode()
 
-    func saveInUserDefaults() {
-        NSKeyedArchiver.setClassName(Self.className, for: Self.self)
-
-        let data = NSKeyedArchiver.archivedData(withRootObject: self)
-
-        UserDefaults.standard.set(data, forKey: Self.identifier)
+        UserDefaults.standard.set(encoded, forKey: identifier)
     }
 }
+

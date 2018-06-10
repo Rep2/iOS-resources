@@ -1,12 +1,10 @@
 import UIKit
 
-class ViewControllerWithRefreshControl: ViewController {
-    @IBOutlet weak var tableView: UITableView!
-
-    lazy var notFoundLabel: UILabel = {
+class TableViewControllerWithRefreshControl: UITableViewController {
+    private lazy var notFoundLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 50))
-        label.text = LocalizedFormatString("connection_view.not_found.message")
-        label.font = UIFont(name: "Lato-Regular", size: 16)
+
+        label.text = NSLocalizedString("No data", comment: "No data table view label text")
         label.textColor = .darkGray
         label.isHidden = true
         label.textAlignment = .center
@@ -16,14 +14,19 @@ class ViewControllerWithRefreshControl: ViewController {
         return label
     }()
 
-    let refreshControl = UIRefreshControl()
+    private var isAnimating: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.addSubview(refreshControl)
+        refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl!)
+    }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if self.isAnimating {
             self.startAnimatingRefreshControl()
         }
     }
@@ -31,22 +34,37 @@ class ViewControllerWithRefreshControl: ViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        refreshControl.endRefreshing()
+        refreshControl?.endRefreshing()
         tableView.setContentOffset(.zero, animated: true)
     }
 
-    func setNotFoundLabelText(_ text: String) {
+    public func setNotFoundLabelText(_ text: String) {
         notFoundLabel.text = text
     }
 
-    func startAnimatingRefreshControl() {
-        tableView.setContentOffset(CGPoint(x: 0, y: -refreshControl.bounds.height), animated: false)
-        refreshControl.beginRefreshing()
+    public func didStartLoading() {
+        isAnimating = true
+
+        startAnimatingRefreshControl()
     }
 
-    func endRefreshing(itemCount: Int) {
-        refreshControl.endRefreshing()
-        tableView.reloadData()
-        notFoundLabel.isHidden = itemCount > 0
+    public func didEndLoading(isEmpty: Bool) {
+        isAnimating = false
+
+        stopAnimatingRefreshControl(isEmpty: isEmpty)
+    }
+
+    private func startAnimatingRefreshControl() {
+        tableView.setContentOffset(CGPoint(x: 0, y: -(refreshControl?.bounds.height ?? 0)), animated: false)
+        refreshControl?.beginRefreshing()
+    }
+
+    private func stopAnimatingRefreshControl(isEmpty: Bool) {
+        refreshControl?.endRefreshing()
+        notFoundLabel.isHidden = !isEmpty
+    }
+
+    func reloadData(isRefreshing: Bool) {
+        notFoundLabel.isHidden = numberOfSections(in: tableView) > 0
     }
 }
