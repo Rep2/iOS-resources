@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F60E21662110623B0060B1C2 /* ImageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60E21652110623B0060B1C2 /* ImageSelection.swift */; };
 		F6342FF5207A88F100A5F2D9 /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6342FF4207A88F100A5F2D9 /* ApplicationManager.swift */; };
 		F6342FFA207A8A0E00A5F2D9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6342FF9207A8A0E00A5F2D9 /* NavigationController.swift */; };
 		F6342FFE207A8A4900A5F2D9 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6342FFD207A8A4900A5F2D9 /* ColorManager.swift */; };
+		F63D855F20CF58D5002B6120 /* FacbookLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63D855E20CF58D5002B6120 /* FacbookLoginManager.swift */; };
 		F64539032085B9A700E4C2EB /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64539022085B9A700E4C2EB /* UIColor.swift */; };
 		F64539052085B9B600E4C2EB /* RGBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64539042085B9B600E4C2EB /* RGBColor.swift */; };
 		F67BB8F620CDCC8A0018F26D /* UIView+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67BB8F520CDCC8A0018F26D /* UIView+Shake.swift */; };
+		F67BB8FE20CDE30D0018F26D /* EmailVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67BB8FD20CDE30D0018F26D /* EmailVerify.swift */; };
+		F67BB90220CE7CFD0018F26D /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67BB90120CE7CFD0018F26D /* LoadingButton.swift */; };
 		F67ECD682076940100780744 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67ECD672076940100780744 /* Logger.swift */; };
 		F6839DCB207FA20900613896 /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6839DCA207FA20900613896 /* ButtonViewModel.swift */; };
 		F68A28902053524B007ED91B /* iOSResources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68A28862053524B007ED91B /* iOSResources.framework */; };
@@ -61,12 +65,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F60E21652110623B0060B1C2 /* ImageSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelection.swift; sourceTree = "<group>"; };
 		F6342FF4207A88F100A5F2D9 /* ApplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
 		F6342FF9207A8A0E00A5F2D9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F6342FFD207A8A4900A5F2D9 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		F63D855E20CF58D5002B6120 /* FacbookLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacbookLoginManager.swift; sourceTree = "<group>"; };
 		F64539022085B9A700E4C2EB /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F64539042085B9B600E4C2EB /* RGBColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColor.swift; sourceTree = "<group>"; };
 		F67BB8F520CDCC8A0018F26D /* UIView+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shake.swift"; sourceTree = "<group>"; };
+		F67BB8FD20CDE30D0018F26D /* EmailVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerify.swift; sourceTree = "<group>"; };
+		F67BB90120CE7CFD0018F26D /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		F67ECD672076940100780744 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F6839DCA207FA20900613896 /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
 		F68A28862053524B007ED91B /* iOSResources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSResources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +190,7 @@
 				F68A28A72053526A007ED91B /* RxTableViewDataSource */,
 				F68A28AB2053526A007ED91B /* ViewControllers */,
 				F68A28AD2053526A007ED91B /* Animations */,
+				F67BB90120CE7CFD0018F26D /* LoadingButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -243,6 +252,9 @@
 				F68A28B92053526A007ED91B /* Double.swift */,
 				F68A28BA2053526A007ED91B /* LocationManager.swift */,
 				F68A28BB2053526A007ED91B /* UIKitExtensions */,
+				F67BB8FD20CDE30D0018F26D /* EmailVerify.swift */,
+				F63D855E20CF58D5002B6120 /* FacbookLoginManager.swift */,
+				F60E21652110623B0060B1C2 /* ImageSelection.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -488,7 +500,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F68A29A720570078007ED91B /* UICollectionView.swift in Sources */,
+				F67BB8FE20CDE30D0018F26D /* EmailVerify.swift in Sources */,
 				F68A28C52053526A007ED91B /* TextViewModel.swift in Sources */,
+				F63D855F20CF58D5002B6120 /* FacbookLoginManager.swift in Sources */,
 				F6E544E8206B9FF000B727F9 /* PopoverViewController.swift in Sources */,
 				F67BB8F620CDCC8A0018F26D /* UIView+Shake.swift in Sources */,
 				F68A28D32053526A007ED91B /* LocationManager.swift in Sources */,
@@ -497,6 +511,7 @@
 				F6839DCB207FA20900613896 /* ButtonViewModel.swift in Sources */,
 				F68A28D22053526A007ED91B /* Double.swift in Sources */,
 				F68A28CE2053526A007ED91B /* Singleton.swift in Sources */,
+				F60E21662110623B0060B1C2 /* ImageSelection.swift in Sources */,
 				F64539052085B9B600E4C2EB /* RGBColor.swift in Sources */,
 				F68A28C62053526A007ED91B /* Border.swift in Sources */,
 				F6DEB76E207C9D8100E286B0 /* Border.swift in Sources */,
@@ -518,6 +533,7 @@
 				F6342FFE207A8A4900A5F2D9 /* ColorManager.swift in Sources */,
 				F68A28C42053526A007ED91B /* ViewViewModel.swift in Sources */,
 				F6342FFA207A8A0E00A5F2D9 /* NavigationController.swift in Sources */,
+				F67BB90220CE7CFD0018F26D /* LoadingButton.swift in Sources */,
 				F6DEB765207C9CB700E286B0 /* TextViewModel.swift in Sources */,
 				F68A28CF2053526A007ED91B /* Storable.swift in Sources */,
 				F68A28D52053526A007ED91B /* Codable.swift in Sources */,
